@@ -210,6 +210,63 @@ header {
 .theme-option, .lang-option { padding:8px 12px; border-radius:8px; background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--text); cursor:pointer; }
 .theme-option.active, .lang-option.active { background: linear-gradient(90deg, rgba(var(--accent-rgb),0.12), rgba(var(--accent-rgb),0.06)); border-color: rgba(var(--accent-rgb),0.7); }
 
+/* Modern blue UI overrides - appended */
+.hero { display:flex; gap:20px; align-items:center; padding:28px 0; }
+.hero-left { flex:1; }
+.hero-title { font-size: clamp(1.6rem, 3.4vw, 2.6rem); margin-bottom:8px; color:var(--accent); }
+.hero-desc { color:var(--muted); margin-bottom:16px; }
+.hero-ctas { display:flex; gap:12px; }
+.hero-right { width:220px; display:flex; justify-content:center; }
+.hero-card { background: linear-gradient(180deg, rgba(30,110,255,0.06), rgba(30,110,255,0.02)); padding:14px; border-radius:12px; border:1px solid rgba(var(--accent-rgb),0.08); text-align:center; }
+.hero-img { width:120px; height:80px; object-fit:cover; border-radius:8px; }
+
+.btn { padding:10px 14px; border-radius:10px; border: none; cursor:pointer; font-weight:700; }
+.btn.primary { background: linear-gradient(90deg, var(--accent), #1a82d6); color: white; box-shadow: 0 10px 30px rgba(var(--accent-rgb),0.12); }
+.btn.outline { background: transparent; border:1px solid rgba(255,255,255,0.06); color:var(--text); }
+.btn.ghost { background: transparent; border:1px solid rgba(255,255,255,0.04); color:var(--muted); }
+
+.modern-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
+.mod-card.modern { display:flex; gap:12px; align-items:center; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:14px; border-radius:12px; border:1px solid rgba(255,255,255,0.03); }
+.mod-image { width:96px; height:96px; flex-shrink:0; border-radius:10px; overflow:hidden; border:1px solid rgba(255,255,255,0.03); }
+.mod-img { width:100%; height:100%; object-fit:cover; }
+.mod-body { flex:1; }
+.mod-actions { margin-top:10px; display:flex; gap:8px; }
+
+.mods-header { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:8px; }
+.search-input { padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); color:var(--text); }
+
+.settings-grid { display:flex; gap:18px; flex-wrap:wrap; margin-top:18px; }
+.settings-card { flex:1 1 280px; background: rgba(255,255,255,0.02); padding:14px; border-radius:10px; border:1px solid rgba(255,255,255,0.03); }
+.accounts-card .account-list { max-height:160px; overflow:auto; margin-bottom:10px; }
+.account-item { display:flex; justify-content:space-between; padding:8px; border-radius:8px; background: rgba(255,255,255,0.01); border:1px solid rgba(255,255,255,0.02); margin-bottom:8px; }
+.account-form { display:flex; gap:8px; flex-direction:column; }
+.account-form input { padding:8px 10px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:var(--text); }
+.form-actions { display:flex; gap:8px; }
+
+.account-preview { padding:8px 12px; border-radius:8px; background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); color:var(--muted); }
+
+/* Header and layout */
+.site-header { background: linear-gradient(180deg, rgba(0,0,0,0.2), transparent); padding:12px 0; position:sticky; top:0; z-index:1200; }
+.header-inner { display:flex; gap:12px; align-items:center; justify-content:space-between; }
+.brand { display:flex; flex-direction:column; }
+.brand .tag { font-size:0.85rem; color:var(--muted); }
+.main-nav { display:flex; gap:8px; }
+.main-nav .nav-link { padding:8px 10px; border-radius:8px; background:transparent; border:1px solid transparent; color:var(--muted); }
+.main-nav .nav-link.active { background: rgba(var(--accent-rgb),0.12); color:var(--accent); border-color: rgba(var(--accent-rgb),0.12); }
+.header-actions { display:flex; gap:10px; align-items:center; }
+
+/* Responsive */
+@media (max-width:800px){
+    .hero { flex-direction:column; align-items:flex-start; }
+    .hero-right{ width:100%; }
+    .header-inner{ flex-direction:column; align-items:stretch; }
+    .main-nav{ flex-wrap:wrap; }
+}
+
+@media (prefers-reduced-motion: reduce){
+    * { animation: none !important; transition: none !important; }
+}
+
 .logo {
     font-size: 3rem;
     color: var(--accent);

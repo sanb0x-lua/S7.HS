@@ -236,6 +236,67 @@ function init() {
     // mark language buttons active on load
     document.querySelectorAll('.lang-option').forEach(b=> b.classList.toggle('active', b.dataset.lang===preferredLang));
 
+    // Accounts: simple localStorage-backed 'work accounts' UI
+    const accountListEl = document.getElementById('accountList');
+    const accName = document.getElementById('accName');
+    const accToken = document.getElementById('accToken');
+    const saveAccountBtn = document.getElementById('saveAccount');
+    const clearAccountsBtn = document.getElementById('clearAccounts');
+    const accountPreview = document.getElementById('accountPreview');
+
+    function loadAccounts(){
+        const raw = localStorage.getItem('workAccounts');
+        try{
+            return raw ? JSON.parse(raw) : [];
+        }catch(e){ return []; }
+    }
+
+    function saveAccounts(list){ localStorage.setItem('workAccounts', JSON.stringify(list)); }
+
+    function renderAccounts(){
+        const list = loadAccounts();
+        accountListEl.innerHTML = '';
+        if (!list.length) accountListEl.innerHTML = '<div class="account-item">No accounts saved</div>';
+        list.forEach((acc, idx)=>{
+            const el = document.createElement('div');
+            el.className = 'account-item';
+            el.innerHTML = `<div>${acc.name}</div><div><button class="btn small use-acc" data-idx="${idx}">Use</button> <button class="btn small ghost del-acc" data-idx="${idx}">Del</button></div>`;
+            accountListEl.appendChild(el);
+        });
+        // bind buttons
+        accountListEl.querySelectorAll('.use-acc').forEach(b=> b.addEventListener('click', ()=>{
+            const idx = b.dataset.idx; const acc = loadAccounts()[idx];
+            if (acc){ localStorage.setItem('activeAccount', JSON.stringify(acc)); updateAccountPreview(); }
+        }));
+        accountListEl.querySelectorAll('.del-acc').forEach(b=> b.addEventListener('click', ()=>{
+            const idx = +b.dataset.idx; const list = loadAccounts(); list.splice(idx,1); saveAccounts(list); renderAccounts();
+        }));
+    }
+
+    function updateAccountPreview(){
+        const raw = localStorage.getItem('activeAccount');
+        if (!raw){ accountPreview.textContent = 'No account'; return; }
+        try{ const acc = JSON.parse(raw); accountPreview.textContent = `Active: ${acc.name}`; }catch(e){ accountPreview.textContent = 'No account'; }
+    }
+
+    if (saveAccountBtn) saveAccountBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        const name = accName.value.trim(); const token = accToken.value.trim();
+        if (!name || !token) return alert('Please enter name and token');
+        const list = loadAccounts(); list.push({name, token}); saveAccounts(list); accName.value=''; accToken.value=''; renderAccounts();
+    });
+
+    if (clearAccountsBtn) clearAccountsBtn.addEventListener('click', function(){ if (confirm('Clear all saved accounts?')){ saveAccounts([]); renderAccounts(); localStorage.removeItem('activeAccount'); updateAccountPreview(); } });
+
+    renderAccounts(); updateAccountPreview();
+
+    // open settings btn
+    const openSettingsBtn = document.getElementById('openSettingsBtn');
+    if (openSettingsBtn) openSettingsBtn.addEventListener('click', ()=> showSection('settings'));
+
+    // theme option active state reflect
+    document.querySelectorAll('.theme-option').forEach(b=> b.classList.toggle('active', b.dataset.theme === (localStorage.getItem('preferredTheme') || 'dark')));
+
     // Initialize show based on hash or default
     const initial = location.hash ? location.hash.replace('#','') : 'home';
     showSection(initial);

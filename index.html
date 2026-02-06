@@ -12,79 +12,81 @@
     </div>
     
     <div class="container">
-        <header>
-            <div class="header-content" style="flex-direction:column;align-items:center;">
-                <div class="top-row">
+        <header class="site-header">
+            <div class="header-inner">
+                <div class="brand">
                     <h1 class="logo">Sanbox Mods</h1>
-                    <div class="theme-wrap">
-                        <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌑</button>
-                    </div>
+                    <div class="tag">Community edits & scripts</div>
                 </div>
+
                 <nav class="main-nav">
                     <button class="nav-link active" data-target="home">Home</button>
                     <button class="nav-link" data-target="mods">Mods</button>
                     <button class="nav-link" data-target="settings">Settings</button>
                 </nav>
+
+                <div class="header-actions">
+                    <div class="account-preview" id="accountPreview">No account</div>
+                    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌑</button>
+                </div>
             </div>
         </header>
 
         <main>
             <section id="home" class="section active">
-                <div class="welcome-section">
-                    <h2 class="welcome-title">Добро пожаловать</h2>
-                    <p class="welcome-text" id="welcomeText">
-                        Добро пожаловать на сайт модов и скриптов от Sanbox. Вам предстоит пролистать вниз и выбрать какой вы хотите скачать мод либо скрипт. Все скрипты и моды протестированы и безопасны в использовании.
-                    </p>
-
-                    <div class="social-buttons">
-                        <a href="https://discord.com/users/sanbox184" target="_blank" class="social-btn">
-                            <img src="d2.jpg" alt="Discord" class="btn-icon">
-                            <span id="discordBtn">DISCORD</span>
-                        </a>
-                        <a href="https://t.me/S1nboxChe2ts" target="_blank" class="social-btn">
-                            <img src="t3.jpg" alt="Telegram" class="btn-icon">
-                            <span id="telegramBtn">TELEGRAM</span>
-                        </a>
+                <div class="hero">
+                    <div class="hero-left">
+                        <h2 class="hero-title">Sanbox — моды и скрипты</h2>
+                        <p class="hero-desc">Красивая, спокойная цветовая схема, простая навигация и быстрая загрузка на телефоне.</p>
+                        <div class="hero-ctas">
+                            <button class="btn primary" data-target="mods">Просмотреть моды</button>
+                            <button class="btn outline" id="openSettingsBtn">Настройки</button>
+                        </div>
+                    </div>
+                    <div class="hero-right">
+                        <div class="hero-card">
+                            <h4>Featured</h4>
+                            <img src="Script.png" alt="Script" class="hero-img">
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section id="mods" class="section active">
+            <section id="mods" class="section">
                 <div class="mods-section">
-                    <h2 class="section-title">Доступные Моды</h2>
+                    <div class="mods-header">
+                        <h2 class="section-title">Доступные Моды</h2>
+                        <input type="search" id="modsSearch" placeholder="Поиск модов" class="search-input">
+                    </div>
                     <p class="section-subtitle">Выберите нужную модификацию</p>
-                    
-                    <div class="mods-grid">
-                        <div class="mod-card">
-                            <div class="mod-content">
-                                <div class="mod-image">
-                                    <img src="Script.png" alt="Script" class="mod-img">
-                                </div>
-                                <div class="mod-info">
-                                    <h3 class="mod-title">Скрипт</h3>
-                                    <p class="mod-desc" id="scriptDesc">Скрипт для разрушения игры</p>
+
+                    <div class="mods-grid modern-grid">
+                        <div class="mod-card modern">
+                            <div class="mod-image">
+                                <img src="Script.png" alt="Script" class="mod-img">
+                            </div>
+                            <div class="mod-body">
+                                <h3 class="mod-title">Скрипт</h3>
+                                <p class="mod-desc" id="scriptDesc">Скрипт для разрушения игры</p>
+                                <div class="mod-actions">
+                                    <button class="btn primary download-btn" data-file="Script.zip">Скачать</button>
+                                    <button class="btn ghost">Подробнее</button>
                                 </div>
                             </div>
-                            <button class="download-btn" data-file="Script.zip">
-                                <span class="btn-text" id="downloadScript">Скачать</span>
-                                <div class="loading-bars"></div>
-                            </button>
                         </div>
 
-                        <div class="mod-card">
-                            <div class="mod-content">
-                                <div class="mod-image">
-                                    <img src="HS_Mod.png" alt="Hyper Sandbox Mod" class="mod-img">
-                                </div>
-                                <div class="mod-info">
-                                    <h3 class="mod-title">Hypper Sandbox Mod v1.0</h3>
-                                    <p class="mod-desc" id="hsDesc">Мод: Нет рекламы, Устранение некоторых багов, Удаление половины античита, Добавление смещений для функций</p>
+                        <div class="mod-card modern">
+                            <div class="mod-image">
+                                <img src="HS_Mod.png" alt="Hyper Sandbox Mod" class="mod-img">
+                            </div>
+                            <div class="mod-body">
+                                <h3 class="mod-title">Hypper Sandbox Mod v1.0</h3>
+                                <p class="mod-desc" id="hsDesc">Мод: Нет рекламы, устранение багов, добавление полезных функций</p>
+                                <div class="mod-actions">
+                                    <button class="btn primary download-btn" data-file="Hypper Sandbox Mod.zip">Скачать</button>
+                                    <button class="btn ghost">Подробнее</button>
                                 </div>
                             </div>
-                            <button class="download-btn" data-file="Hypper Sandbox Mod.zip">
-                                <span class="btn-text" id="downloadHS">Скачать</span>
-                                <div class="loading-bars"></div>
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -92,15 +94,15 @@
 
             <section id="settings" class="section">
                 <div class="settings-section">
-                    <h2 class="section-title">Settings</h2>
-                    <p class="section-subtitle">Настройки темы и языка</p>
+                    <h2 class="section-title">Settings & Accounts</h2>
+                    <p class="section-subtitle">Управление темой, языком и рабочими аккаунтами</p>
 
                     <div class="settings-grid">
                         <div class="settings-card">
                             <h3>Theme</h3>
                             <div class="theme-options">
-                                <button class="theme-option" data-theme="dark">Dark (чёрная)</button>
-                                <button class="theme-option" data-theme="light">Light (белая)</button>
+                                <button class="theme-option" data-theme="dark">Dark</button>
+                                <button class="theme-option" data-theme="light">Light</button>
                             </div>
                         </div>
 
@@ -110,6 +112,19 @@
                                 <button class="lang-option" data-lang="ru">Русский</button>
                                 <button class="lang-option" data-lang="en">English</button>
                             </div>
+                        </div>
+
+                        <div class="settings-card accounts-card">
+                            <h3>Work Accounts</h3>
+                            <div class="account-list" id="accountList"></div>
+                            <form id="accountForm" class="account-form">
+                                <input type="text" id="accName" placeholder="Account name" required>
+                                <input type="text" id="accToken" placeholder="Token / note" required>
+                                <div class="form-actions">
+                                    <button class="btn primary" id="saveAccount">Save</button>
+                                    <button class="btn ghost" id="clearAccounts" type="button">Clear</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
